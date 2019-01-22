@@ -1,0 +1,11 @@
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "dependencies": {
+    "kenticocloud-nuxt-module": "^1.0.2",
+    "nuxt": "^2.1.0",
+    "rxjs": "^6.3.3"
+  }
+}
