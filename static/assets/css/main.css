@@ -3419,11 +3419,10 @@ input, select, textarea {
 			filter: blur(0);
 			opacity: 1;
 			font-family: Raleway, Helvetica, sans-serif;
-			font-size: 1em;
+			font-size: 1.5em;
 			font-weight: 200;
 			letter-spacing: 0.1em;
-			line-height: 2;
-			text-transform: uppercase;
+			line-height: 1.5;
 		}
 
 		@media screen and (max-width: 1280px) {
@@ -3472,7 +3471,7 @@ input, select, textarea {
 				}
 
 				#banner p {
-					font-size: 0.8em;
+					font-size: 1em;
 				}
 
 		}
@@ -3529,11 +3528,10 @@ input, select, textarea {
 
 		#wrapper > header p {
 			font-family: Raleway, Helvetica, sans-serif;
-			font-size: 1em;
+			font-size: 1.5em;
 			font-weight: 200;
 			letter-spacing: 0.1em;
-			line-height: 2;
-			text-transform: uppercase;
+			line-height: 1.5;
 		}
 
 	@media screen and (max-width: 1280px) {
@@ -4118,3 +4116,32 @@ p.errors { border: 2px solid #cc2323; border-radius: 4px; padding: 15px; }
 p.errors ul { margin-bottom: 0 }
 .form-overlay { position: absolute; top: -10px; left: -10px; width: 104%; height: 100%; background: linear-gradient(45deg, #300000, #000000, #300000, #000000); opacity: 0.3; text-align: center; color: #fff; font-size: 3em; padding-top: 45%; }
 form { position: relative; }
+
+.flexbox-row
+{
+	display: flex;
+	flex-direction: row;
+	text-align: left;
+}
+.flexbox-row > div
+{
+	flex-basis: 50%;
+}
+.flexbox-row > div:first-child
+{
+	padding-right: 10px;
+}
+.flexbox-row > div:last-child
+{
+	padding-left: 10px;
+}
+@media screen and (max-width: 480px) {
+	.flexbox-row
+	{
+		flex-direction: column;
+	}
+	.flexbox-row > div
+	{
+		padding: 0;
+	}
+}

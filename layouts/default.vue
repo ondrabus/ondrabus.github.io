@@ -20,10 +20,10 @@
 							
 							<ul class="contact">
 								<li class="fa-phone"><a href="tel:+420734484089">+420 734 484089</a></li>
-								<li class="fa-envelope"><a href="mailto:hello@ondrabus.com">hello@ondrabus.com</a></li>
-								<li class="fa-twitter"><a href="https://twitter.com/ondrabus">twitter.com/ondrabus</a></li>
-								<li class="fa-linkedin"><a href="https://www.linkedin.com/in/ondrej-polesny">linkedin.com/in/ondrej-polesny</a></li>
-								<li class="fa-asterisk"><a href="https://devnet.kentico.com/users/441094/ondrej-polesny">devnet.kentico.com</a></li>
+								<li class="fa-github"><a href="https://github.com/ondrabus">ondrabus</a></li>
+								<li class="fa-twitter"><a href="https://twitter.com/ondrabus">ondrabus</a></li>
+								<li class="fa-linkedin"><a href="https://www.linkedin.com/in/ondrej-polesny">ondrej-polesny</a></li>
+								<li class="fa-rss"><a href="https://medium.com/@o.polesny">medium.com/@o.polesny</a></li>
 							</ul>
 							<ul class="copyright">
 								<li>&copy; Ondrej Polesny. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>

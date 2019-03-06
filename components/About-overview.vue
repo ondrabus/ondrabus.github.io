@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<section v-for="(article, index) in $store.state.aboutMeData.articles" :id="'article' + index" :class="'wrapper spotlight style' + (index+1) + ((index%2!=0) ? ' alt' : '')">
+		<section v-for="(article, index) in $store.state.aboutMeData.articles" :id="'article' + index" :class="'wrapper spotlight style' + (index+1) + ((index%2!=1) ? ' alt' : '')">
 			<div class="inner">
 				<router-link to="/about" class="image"><img :src="article.image" alt="" /></router-link>
 				<div class="content">

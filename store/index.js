@@ -1,10 +1,11 @@
 import Vuex from 'vuex'
 import { SortOrder } from 'kentico-cloud-delivery'
+import axios from 'axios'
 
 const createStore = () => {
 	return new Vuex.Store({
 		state: () => ({
-			blogPosts: null,
+			blogPosts: [],
 			aboutMeData: {
 				header: null,
 				teaser: null,
@@ -24,30 +25,24 @@ const createStore = () => {
 			}
 		},
 		actions: {
-			getBlogPosts (context) {
-				return this.$deliveryClient
-					.items()
-					.type('blog_post')
-					.elementsParameter(['link', 'title', 'image_url', 'image', 'teaser'])
-					.orderParameter('elements.published', SortOrder.desc)
-					.getPromise()
-					.then(response => {
-						context.commit('setBlogPosts', response.items.map(item => ({
-							url: item.link.value,
-							header: item.title.value,
-							image: item.image_url.value != '' ? item.image_url.value : item.image.assets[0].url,
-							teaser: item.teaser.value
-					})))});
+			async getBlogPosts(context) {
+				var blogPosts = await axios.get(`https://wt-1a1bd2f77aae92f4bbfa652ea18ef985-0.sandbox.auth0-extend.com/OndrabusMediumFeed`);
+
+				context.commit('setBlogPosts', blogPosts.data.map(item => ({
+					url: item.link,
+					header: item.title,
+					image: item.content.imageUrl,
+					teaser: item.content.teaser.length > 300 ? item.content.teaser.substr(0, 300) + "..." : item.content.teaser
+				})));
 			},
-			
-			getAboutMeData (context) {
-				return this.$deliveryClient
+			async getAboutMeData (context) {
+				await this.$deliveryClient
 					.items()
 					.type('about_me_page')
 					.elementsParameter(['title', 'text', 'teaser', 'image', 'about_me_items'])
 					.depthParameter(2)
 					.getPromise()
-					.then(response => {
+					.then(response => 
 						context.commit('setAboutMeData', ({
 							articles: response.items[0].about_me_items.map(item => ({
 								header: item.title.value,
@@ -57,7 +52,7 @@ const createStore = () => {
 							})),
 							header: response.items[0].title.value,
 							teaser: response.items[0].teaser.value
-					}))});
+						})));
 			}
 		}
 	})
