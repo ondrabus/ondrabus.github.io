@@ -2,14 +2,15 @@
 	<div>
 		<Banner></Banner>
 		<section id="wrapper">
-			<NewsletterSignup></NewsletterSignup>
+			<!-- <NewsletterSignup></NewsletterSignup> -->
 			
 			<section id="four" class="wrapper alt style1">
 				<div class="inner">
 					<div>
-						<BlogList limit="4"></BlogList>
+						<NewsList limit="2"></NewsList>
 						<ul class="actions">
-							<li><a href="/blog" class="button">See all</a></li>
+							<li><router-link to="/blog" class="button">See more blog posts</router-link></li>
+							<li><router-link to="/videos" class="button">See more videos</router-link></li>
 						</ul>
 					</div>
 				</div>
@@ -21,8 +22,8 @@
 <script>
 	import Banner from '~/components/Banner.vue'
 	import AboutOverview from '~/components/About-overview.vue'
-	import BlogList from '~/components/Blog-list.vue'
-	import NewsletterSignup from '~/components/NewsletterSignup.vue'
+	import NewsList from '~/components/News-list.vue'
+	//import NewsletterSignup from '~/components/NewsletterSignup.vue'
 	import axios from 'axios'
 	
 	export default {
@@ -30,12 +31,14 @@
 		components: {
 			Banner,
 			AboutOverview,
-			BlogList,
-			NewsletterSignup
+			//BlogList,
+			NewsList
+			//NewsletterSignup
 		},
 
 		async fetch ({store, params}) {
 			await store.dispatch('getBlogPosts');
+			await store.dispatch('getVideos');
 		},
 		
 		mounted: async function(){

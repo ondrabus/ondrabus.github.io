@@ -5,8 +5,9 @@
 				<h2>Menu</h2>
 				<ul class="links" @click="hide">
 					<li><router-link to="/">Home</router-link></li>
-					<li><router-link to="/blog">Blog</router-link></li>
 					<li><router-link to="/about">About</router-link></li>
+					<li><router-link to="/blog">Blog</router-link></li>
+					<li><router-link to="/videos">Videos</router-link></li>
 				</ul>
 				<a href="#" class="close" @click="hide">Close</a>
 			</div>

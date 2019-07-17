@@ -6,6 +6,7 @@ const createStore = () => {
 	return new Vuex.Store({
 		state: () => ({
 			blogPosts: [],
+			videos: [],
 			aboutMeData: {
 				header: null,
 				teaser: null,
@@ -17,6 +18,9 @@ const createStore = () => {
 			setBlogPosts (state, blogPosts) {
 				state.blogPosts = blogPosts;
 			},
+			setVideos (state, videos){
+				state.videos = videos;
+			},
 			setAboutMeData (state, aboutMeData) {
 				state.aboutMeData = aboutMeData;
 			},
@@ -26,13 +30,27 @@ const createStore = () => {
 		},
 		actions: {
 			async getBlogPosts(context) {
-				var blogPosts = await axios.get(`https://wt-1a1bd2f77aae92f4bbfa652ea18ef985-0.sandbox.auth0-extend.com/OndrabusMediumFeed`);
+				let blogPosts = await axios.get(`https://wt-1a1bd2f77aae92f4bbfa652ea18ef985-0.sandbox.auth0-extend.com/OndrabusMediumFeed`);
 
 				context.commit('setBlogPosts', blogPosts.data.map(item => ({
 					url: item.link,
 					header: item.title,
-					image: item.content.imageUrl,
-					teaser: item.content.teaser.length > 300 ? item.content.teaser.substr(0, 300) + "..." : item.content.teaser
+					image: item.content ? item.content.imageUrl : null,
+					teaser: item.content ? item.content.teaser.length > 300 ? item.content.teaser.substr(0, 300) + "..." : item.content.teaser : null,
+					date: Date.parse(item.published),
+					isVideo: false
+				})));
+			},
+			async getVideos(context) {
+				let res = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=UUZ3y6e-1BN5XoKzlQxOocHg&key=AIzaSyC_UzUlfTe7O-6O0sgaHQczPBxovZJVhpU`);
+
+				context.commit('setVideos', res.data.items.map(item => ({
+					url: "https://youtu.be/" + item.snippet.resourceId.videoId,
+					header: item.snippet.title,
+					image: item.snippet.thumbnails.high.url,
+					teaser: item.snippet.description.length > 300 ? item.snippet.description.substr(0, 300) + "..." : item.snippet.description,
+					date: Date.parse(item.snippet.publishedAt),
+					isVideo: true
 				})));
 			},
 			async getAboutMeData (context) {

@@ -7,7 +7,7 @@ export default {
 			{ hid: 'description', name: 'description', content: 'Ondrej Polesny - Developer, Speaker, Trainer' }
 		],
 		script: [
-			{ src: 'https://www.google.com/recaptcha/api.js?onload=recaptchaLoaded', type: "text/javascript" },
+			{ src: 'https://www.google.com/recaptcha/api.js?render=6Ldg7K0UAAAAAMcuBXdBdUkNJoCYU2dpxGpauiAh', type: "text/javascript" },
 			{ src: 'assets/js/recaptcha.js', type: "text/javascript" }
 		],
 	},

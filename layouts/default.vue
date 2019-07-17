@@ -14,7 +14,7 @@
 					<section id="footer">
 						<div class="inner">
 							<h2 class="major">Get in touch</h2>
-							<p>You want to talk to me over a beer? I'd be happy to! Just let me know when is good for you via the form below or use any of the social media channels.</p>
+							<p>Wanna talk to me over a beer? Just let me know when is good for you via the form below or use any of the social media channels.</p>
 							
 							<ContactForm></ContactForm>
 							

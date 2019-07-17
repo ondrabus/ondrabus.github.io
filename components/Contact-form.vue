@@ -20,7 +20,7 @@
 				<label></label>
 				<p class="errors">
 					<ul>
-						<li v-for="error in errors">{{error}}</li>
+						<li v-for="error in errors" v-bind:key="error">{{error}}</li>
 					</ul>
 				</p>
 			</div>
@@ -48,7 +48,8 @@
 				errors: [],
 				formGood: false,
 				disabled: true,
-				sending: false
+				sending: false,
+				recaptchaToken: null
 			}
 		},
 		created: function(){
@@ -56,18 +57,23 @@
 		},
 		methods: {
 			enable(){
-				this.$data.disabled = false;
+				grecaptcha.execute('6Ldg7K0UAAAAAMcuBXdBdUkNJoCYU2dpxGpauiAh', {action: 'submit_contact_form'}).then(token => {
+					this.$data.recaptchaToken = token;
+					this.$data.disabled = false;
+				})
 			},
 			submitForm(){
 				this.sending = true;
 				this.errors = [];
 				this.formGood = false;
+
+
 				fetch('https://wt-1a1bd2f77aae92f4bbfa652ea18ef985-0.sandbox.auth0-extend.com/Ondrabus', {
 					body: JSON.stringify({
 						name: this.$data.name,
 						email: this.$data.email,
 						message: this.$data.message,
-						recaptcha: grecaptcha.getResponse()
+						recaptcha: this.$data.recaptchaToken
 					}),
 					headers: {
 						'content-type':'application/json'
@@ -79,7 +85,7 @@
 					if (res.status){
 						this.$data.formGood = true;
 					} else {
-						grecaptcha.reset();
+						this.enable();
 						this.$data.errors = res.errors;
 						
 					}
