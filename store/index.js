@@ -2,6 +2,8 @@ import Vuex from 'vuex'
 import { SortOrder } from 'kentico-cloud-delivery'
 import axios from 'axios'
 
+require('dotenv').config();
+
 const createStore = () => {
 	return new Vuex.Store({
 		state: () => ({
@@ -42,7 +44,8 @@ const createStore = () => {
 				})));
 			},
 			async getVideos(context) {
-				let res = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=UUZ3y6e-1BN5XoKzlQxOocHg&key=AIzaSyC_UzUlfTe7O-6O0sgaHQczPBxovZJVhpU`);
+				console.log(process.env);
+				let res = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=UUZ3y6e-1BN5XoKzlQxOocHg&key=` + process.env.VUE_APP_YOUTUBEAPIKEY);
 
 				context.commit('setVideos', res.data.items.map(item => ({
 					url: "https://youtu.be/" + item.snippet.resourceId.videoId,

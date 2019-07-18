@@ -25,6 +25,11 @@ export default {
 	build: {
 		extractCSS: {
 			allChunks: true
+		},
+		extend (config, {isDev, isClient}) {
+			config.node = {
+				fs: 'empty'
+			}
 		}
 	}
 }

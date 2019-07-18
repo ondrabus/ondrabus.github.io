@@ -11,3 +11,4 @@ dist
 .vs
 .idea
 newrelic_agent.log
+.env
