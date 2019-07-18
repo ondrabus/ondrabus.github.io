@@ -1,3 +1,3 @@
-var recaptchaLoaded = function(){
+grecaptcha.ready(function(){
 	this.$nuxt.$emit('recaptchaLoaded');
-}
+});
