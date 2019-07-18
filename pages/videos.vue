@@ -29,8 +29,8 @@
 			await store.dispatch('getVideos');
 		},
 
-		// mounted: function(){
-		// 	this.$store.commit('setBannerVisible', false);
-		// }
+		mounted: function(){
+			this.$store.commit('setBannerVisible', false);
+		}
 	}
 </script>

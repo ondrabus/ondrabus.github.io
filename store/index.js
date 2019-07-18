@@ -32,6 +32,10 @@ const createStore = () => {
 		},
 		actions: {
 			async getBlogPosts(context) {
+				if (context.state.blogPosts.length > 0) {
+					return;
+				}
+
 				let blogPosts = await axios.get(`https://wt-1a1bd2f77aae92f4bbfa652ea18ef985-0.sandbox.auth0-extend.com/OndrabusMediumFeed`);
 
 				context.commit('setBlogPosts', blogPosts.data.map(item => ({
@@ -44,7 +48,10 @@ const createStore = () => {
 				})));
 			},
 			async getVideos(context) {
-				console.log(process.env);
+				if (!process.env.VUE_APP_YOUTUBEAPIKEY) {
+					return;
+				}
+
 				let res = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=UUZ3y6e-1BN5XoKzlQxOocHg&key=` + process.env.VUE_APP_YOUTUBEAPIKEY);
 
 				context.commit('setVideos', res.data.items.map(item => ({
