@@ -5,7 +5,7 @@
   "author": "Ondrej Polesny <polesny@email.cz>",
   "scripts": {
     "dev": "nuxt",
-    "build": "npx nuxt generate",
+    "build": "npx nuxt generate && cpx CNAME dist",
     "deploy": "gh-pages -d dist -b master"
   },
   "dependencies": {
