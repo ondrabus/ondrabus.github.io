@@ -16,5 +16,8 @@
     "medium-json-feed": "0.0.3",
     "nuxt": "^2.1.0",
     "rxjs": "^6.3.3"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0"
   }
 }
